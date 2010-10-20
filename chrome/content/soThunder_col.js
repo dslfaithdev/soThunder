@@ -10,9 +10,7 @@ getCellText:         function(row, col) {
 	//get the message's header so that we can extract the reply to field
 	var key = gDBView.getKeyAt(row);
 	var hdr = gDBView.db.GetMsgHdrForKey(key);
-	//dump("----x-dsl--- "+ hdr.getStringProperty("x-dsl") + "----x-dsl----\n");
 	return getXdslInfo(hdr.getStringProperty("x-dsl"),hdr,XDSL);
-	//	return hdr.getStringProperty("x-dsl");
 },
 getSortStringForRow: function(hdr) {return getXdslInfo(hdr.getStringProperty("x-dsl"),hdr,XDSL);},
 isString:            function() {return true;},
@@ -27,9 +25,7 @@ getCellText:         function(row, col) {
 	//get the message's header so that we can extract the reply to field
 	var key = gDBView.getKeyAt(row);
 	var hdr = gDBView.db.GetMsgHdrForKey(key);
-	//dump("----x-dsl--- "+ hdr.getStringProperty("x-dsl") + "----x-dsl----\n");
 	return getXdslInfo(hdr.getStringProperty("x-dsl"),hdr,TRUST);
-	//	return hdr.getStringProperty("x-dsl");
 },
 getSortStringForRow: function(hdr) {return getXdslInfo(hdr.getStringProperty("x-dsl"),hdr,TRUST);},
 isString:            function() {return true;},
@@ -61,9 +57,7 @@ getCellText:         function(row, col) {
 	//get the message's header so that we can extract the reply to field
 	var key = gDBView.getKeyAt(row);
 	var hdr = gDBView.db.GetMsgHdrForKey(key);
-	//dump("----x-dsl--- "+ hdr.getStringProperty("x-dsl") + "----x-dsl----\n");
 	return getXdslInfo(hdr.getStringProperty("x-dsl"),hdr,HOPS);
-	//	return hdr.getStringProperty("x-dsl");
 },
 getSortStringForRow: function(hdr) {return getXdslInfo(hdr.getStringProperty("x-dsl"),hdr,HOPS);},
 isString:            function() {return true;},
@@ -110,9 +104,7 @@ getCellText:         function(row, col) {
 	//get the message's header so that we can extract the reply to field
 	var key = gDBView.getKeyAt(row);
 	var hdr = gDBView.db.GetMsgHdrForKey(key);
-	//dump("----x-dsl--- "+ hdr.getStringProperty("x-dsl") + "----x-dsl----\n");
 	return getXdslInfo(hdr.getStringProperty("x-dsl"),hdr,HOPS_CURR);
-	//	return hdr.getStringProperty("x-dsl");
 },
 getSortStringForRow: function(hdr) {return getXdslInfo(hdr.getStringProperty("x-dsl"),hdr,HOPS_CURR);},
 isString:            function() {return true;},
@@ -141,12 +133,10 @@ observe: function(aMsgFolder, aTopic, aData)
 }
 
 function getXdslInfo(xdsl, hdr, value){
-//	dump("getXdslTrust --- "+ xdsl + "\n");
 	if( xdsl == "" || xdsl == -1 )
 		return xdsl;
 	//&& isNaN(xdsl) 
 	if( xdsl.indexOf(",") != -1 ){
-//		dump("xdslTrust" + xdsl.split(",")[1]+"\n");
 		return xdsl.split(",")[value];
 	}
 		
@@ -162,14 +152,9 @@ function getXdslInfo(xdsl, hdr, value){
 	dump(xmlhttp.responseText + "\n");
 	
 	if(xmlhttp.status == 200){
-		//hdr.setStringProperty("x-dsl", xdsl + "," + xmlhttp.responseText);
-
 		xdsl = xdsl + "," + xmlhttp.responseText;
-		
-//		dump(xdsl + "\n");
 		hdr.setStringProperty("x-dsl", xdsl);
 		return xdsl.split(",")[value];
-		//return xmlhttp.responseText;
 	}
 	else
 		return -1;
@@ -178,8 +163,7 @@ function getXdslInfo(xdsl, hdr, value){
 function doOnceLoaded(){
   var ObserverService = Components.classes["@mozilla.org/observer-service;1"].getService(Components.interfaces.nsIObserverService);
   ObserverService.addObserver(CreateDbObserver, "MsgCreateDBView", false);
-//  window.document.getElementById('folderTree').addEventListener("select",addCustomColumnHandler,false);
-	
+
 	var notificationService =
 	Components.classes["@mozilla.org/messenger/msgnotificationservice;1"]
 	.getService(Components.interfaces.nsIMsgFolderNotificationService);
@@ -188,7 +172,6 @@ function doOnceLoaded(){
 
 var newMailListener = {
 msgAdded: function(aMsgHdr) {   
-	//		alert("Got mail.  Look at aMsgHdr's properties for more details.");
 	dump("\nGot mail.  Look at aMsgHdr's properties for more details: ");
 	dump(aMsgHdr.getStringProperty("x-dsl") + "--\n");
 	}
@@ -196,4 +179,3 @@ msgAdded: function(aMsgHdr) {
 
 
 window.addEventListener("load",doOnceLoaded,false);
-

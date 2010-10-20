@@ -1,22 +1,9 @@
-//var dispSoThunder; //should be stored as a pref..
-var uid;// = "1271758422";
-				//user_pref( "mailnews.customDBHeaders", "x-dsl");
+var uid;
 
 window.addEventListener("load", init, false);
 //window.addEventListener( "compose-send-message", send_event_handler, true );
 
 function init(){
-	/*document.getElementById("folderTree").addEventListener("select",
-	 function(e) {
-	 alert("folderTree");
-	 }, false);
-	 */
-	
-	/*if(document.getElementById("messagepanebox")){
-	 dump("SoThunder: in a single Message\n\n");
-	 refreshXDSL();
-	 }*/
-	
 	try{
 		document.getElementById("threadTree").addEventListener("select", refreshXDSL, false);
 	}catch(e) {}
@@ -31,29 +18,6 @@ function init(){
 											document.getElementById("SP").innerHTML="";					
 											}, false );
 	}catch (e) {}
-	
-/*
- document.getElementById("taskList").addEventListener("select",
- function(e) {
- alert("taskList");
- }, false);
- // bug, pas possible d'utiliser onpopupshowing dans le .xul
- document.getElementById("mailContext").addEventListener("popupshowing",
- function(e) {
- alert("mailContext");
- }, false);
- var notificationService = Components.classes["@mozilla.org/messenger/msgnotificationservice;1"]
- .getService(Components.interfaces.nsIMsgFolderNotificationService);
- 
- notificationService.addListener(init,
- notificationService.folderRenamed
- | notificationService.folderDeleted
- | notificationService.folderMoveCopyCompleted
- | notificationService.msgsMoveCopyCompleted
- | notificationService.msgsDeleted);
- 
-	 */
-	
 	myPrefObserver.register();
 	try{
 		showSoThunder();	
@@ -102,14 +66,11 @@ observe: function(aSubject, aTopic, aData) {
 }
 
 function refreshXDSL( event ){
-	//document.getElementById("SP").innerHTML= "Refreshing XDSL<html:br/><html:center><html:img src=\"chrome://SoEmail/skin/ajax-loader.gif\"/></html:center>";
 	document.getElementById("xdsl-loader").hidden = false;
 	document.getElementById("xdslSocialPath").hidden = true;
 	document.getElementById("xdslSocialPathDiv").innerHTML = "";
 	
 	dump("refreshXDSL: ");
-	//var dbView = Components.classes[@mozilla.org/messenger/msgdbview;].createInstance(Components.interfaces.nsIMsgDBView);
-	
 	try {
 		// Find first selected message
 		var mailKey = gDBView.keyForFirstSelectedMessage;
@@ -175,8 +136,6 @@ function refreshXDSL( event ){
 							hdr.setStringProperty("x-dsl", document.getElementById("xdslTrust").innerHTML);
 							//hdr.setStringProperty("x-dsl",hdr.getStringProperty("x-dsl") + "," + 
 						}
-//	alert(document.getElementById("xdslTrust").innerHTML);																	
-//)alert(document.getElementById("xdslTrust").innerHTML);
 					}
 			}
 		}
@@ -195,17 +154,7 @@ function refreshXDSL( event ){
 		dump("showLinkedTask " + err);
 	}
 }
-/*
- function showSoThunder(){
- dispSoThunder = !dispSoThunder;
- myPrefObserver._branch.setBoolPref("dispSoThunder", dispSoThunder);
- document.getElementById("menu_viewSoThunder").checked = dispSoThunder;
- if(dispSoThunder) 
- document.getElementById("soPath-split").state = "open";
- else
- document.getElementById("soPath-split").state = "collapsed";
- }
- */
+
 function findPaths( evt ) {
 	var myLoader = document.getElementById("xdsl-loader");
 	var mySP = document.getElementById("SP");
@@ -216,18 +165,8 @@ function findPaths( evt ) {
 	myLoader.hidden=false;
 	mySP.innerHTML = "";
 	
-	//	var url="http://soemail.cs.ucdavis.edu/src/findpaths.php?uid=" + uid;
 	var url="http://cyrus.cs.ucdavis.edu/~fer/findpaths.php?uid="+uid;
-	/*	if(document.compose.send_to.value != ""){
-	 url+= "&send_to=" + document.compose.send_to.value;
-	 }
-	 if(document.compose.send_to_cc.value != ""){
-	 url+= "&send_to_cc=" + document.compose.send_to_cc.value;
-	 }
-	 if(document.compose.send_to_bcc.value != ""){
-	 url+= "&send_to_bcc=" + document.compose.send_to_bcc.value;
-	 }
-	 */
+
 	var msgCompFields = gMsgCompose.compFields;
 	var toList = new Array();
 	var ccList = new Array();
