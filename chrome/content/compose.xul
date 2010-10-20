@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<overlay id="composeSoThunder" 
+	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<script type="application/javascript"
+	src="soThunder.js"/>
+	
+	<menupopup id="menu_View_Popup">
+		<menuseparator id="viewMenuBeforeSoThunderSeparator" hidden="true"/>
+		<menuitem id="menu_viewSoThunder" type="checkbox" label="Show Social Path(s)" 
+		accesskey="S" oncommand="showSoThunder();" checked="false" hidden="true"/>
+	</menupopup>
+	
+	
+	<toolbar id="composeToolbar2">
+		<toolbarbutton label="Find Social Path" id="_findSocialPaths" tooltiptext="Find Social Paths" oncommand="findPaths();"/>
+	</toolbar>
+	
+	<hbox id="addresses-box" >
+		<hbox id="soPath-box" position="3"
+			xmlns:html="http://www.w3.org/1999/xhtml" hidden="false"
+			flex="1" minheight="105">
+			<vbox id="xdsl-loader" hidden="true" align="center" pack="center">
+				<description>Finding Social Path</description>
+				<image src="chrome://SoEmail/skin/ajax-loader.gif"/>
+			</vbox>
+			<box  style="overflow-y: auto; overflow-x: hidden;" flex="1">
+			<html:div id="SP">
+			</html:div>
+			</box>			
+			<vbox width="60" minheight="105" align="right" pack="center" style="padding: 5px;">
+				<image src="chrome://SoEmail/skin/seal_blue-gold.png" height="50" width="50"/>
+				<spacer height="5"/>
+				<image src="chrome://SoEmail/skin/Logo_BTH.png" height="50" width="50"/>
+			</vbox>
+		</hbox>
+		
+		<splitter id="soPath-split" collapse="before" position="4" 
+			state="collapsed" orient="vertical" resizebefore="grow" resizeafter="grow">
+			<grippy tooltiptext="Show Social Path(s)"/>
+		</splitter>
+	</hbox>
+	
+</overlay>

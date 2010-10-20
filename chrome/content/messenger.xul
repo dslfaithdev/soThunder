@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<overlay id="windowSoThunder" 
+		xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+		xmlns:html="http://www.w3.org/1999/xhtml">
+<script type="application/javascript"
+		src="soThunder.js"/>
+<script type="application/javascript" 
+		src="soThunder_col.js"/> <!--chrome://superfluous/content/superfluous.js'/>-->
+
+<!--
+<menupopup id="menu_View_Popup">
+	<menuseparator id="viewMenuBeforeSoThunderSeparator"/>
+	<menuitem id="menu_viewSoThunder" type="checkbox" label="Show Social Path(s)" accesskey="S" oncommand="showSoThunder();" checked="false"/>
+</menupopup>
+-->
+	<vbox id="singlemessage">
+		<splitter id="soPath-splitter" collapse="after" resizebefore="closest" 
+			resizeafter="closest" state="collapsed" insertbefore="FindToolbar">
+			<grippy/>
+		</splitter>
+		<hbox id="soPath-box" align="stretch" pack="center"
+			xmlns:html="http://www.w3.org/1999/xhtml" 
+			insertbefore="FindToolbar" hidden="false" height="135" minheight="135">
+			<box width="80"/>
+			<spacer flex="1"/>
+			<vbox id="xdsl-loader" hidden="false" align="center" pack="center">
+				<description>Refreshing XDSL</description>
+				<image src="chrome://SoEmail/skin/ajax-loader.gif"/>
+			</vbox>
+			<box id="xdslSocialPath" hidden="true" align="center" pack="center"> 
+				<html:div id="xdslSocialPathDiv"></html:div>
+			</box>
+			<spacer flex="1"/>
+			<vbox width="80" minheight="120" align="right">
+				<image src="chrome://SoEmail/skin/seal_blue-gold.png" height="60" width="60"/>
+				<spacer height="5"/>
+				<image src="chrome://SoEmail/skin/Logo_BTH.png" height="60" width="60"/>
+			</vbox>
+		</hbox>
+	</vbox>
+	
+<!--overlay for our custom column-->
+<tree id="threadTree">
+	<treecols id="threadCols">
+		<splitter class="tree-splitter" />
+		<treecol id="colxdsl_no" persist="hidden ordinal width" 
+			currentView="unthreaded" flex="2"
+			label="X-DSL #" tooltiptext="Click to sort by Social context" />
+		<treecol id="colxdsl_trust" persist="hidden ordinal width" 
+			currentView="unthreaded" flex="2"
+			label="X-DSL Trust" tooltiptext="Click to sort by Social context (Trust value)" />
+		<treecol id="colxdsl_hops" persist="hidden ordinal width" 
+			currentView="unthreaded" flex="2"
+			label="X-DSL Hops" tooltiptext="Click to sort by Social context (Number of social hops)" />
+		
+		<treecol id="colxdsl_trust_current" persist="hidden ordinal width" 
+			currentView="unthreaded" flex="2"
+			label="C X-DSL Trust" tooltiptext="Click to sort by Social context (Current trust value)" />
+		<treecol id="colxdsl_hops_current" persist="hidden ordinal width" 
+			currentView="unthreaded" flex="2"
+			label="C X-DSL Hops" tooltiptext="Click to sort by Social context (Current number of social hops)" />
+	</treecols>
+</tree>
+
+</overlay>

@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<overlay id="windowSoThunder" 
+		xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+		xmlns:html="http://www.w3.org/1999/xhtml">
+<script type="application/javascript"
+		src="soThunder.js"/>
+<!--
+<menupopup id="menu_View_Popup">
+	<menuseparator id="viewMenuBeforeSoThunderSeparator"/>
+	<menuitem id="menu_viewSoThunder" type="checkbox" label="Show Social Path(s)" accesskey="S" oncommand="showSoThunder();" checked="false"/>
+</menupopup>
+-->
+	<vbox id="singlemessage">
+		<splitter id="soPath-splitter" collapse="after" resizebefore="closest" 
+			resizeafter="closest" state="collapsed" insertbefore="FindToolbar">
+			<grippy/>
+		</splitter>
+		<vbox flex="1" id="soPath-box" align="center" pack="center"
+			xmlns:html="http://www.w3.org/1999/xhtml" 
+			insertbefore="FindToolbar" hidden="false" height="30" minheight="30">
+			<vbox id="xdsl-loader" hidden="false" align="center" pack="center">
+				<description>Refreshing XDSL</description>
+				<image src="chrome://SoEmail/skin/ajax-loader.gif"/>
+			</vbox>
+			
+			<button id="findSocialPaths" label="Find Social Paths" oncommand="" hidden="true"/>
+			<vbox id="xdslSocialPath" hidden="false"> 
+				<html:div id="xdslSocialPathDiv">
+				</html:div>
+			</vbox>
+		</vbox>
+	</vbox>
+	
+<!--overlay for our custom column-->
+<tree id="threadTree">
+	<treecols id="threadCols">
+		<splitter class="tree-splitter" />
+		<treecol id="colxdsl" persist="hidden ordinal width" 
+			currentView="unthreaded" flex="2"
+			label="X-DSL" tooltiptext="Click to sort by the Social context" />
+	</treecols>
+</tree>
+
+</overlay>

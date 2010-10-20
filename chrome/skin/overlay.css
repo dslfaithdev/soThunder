@@ -1,0 +1,30 @@
+/* This is just an example.  You shouldn't do this. */
+#SoEmail-hello
+{
+  color: red ! important;
+}
+#SoEmail-toolbar-button
+{
+  list-style-image: url("chrome://SoEmail/skin/toolbar-button.png");
+  -moz-image-region: rect(0px 24px 24px 0px);
+}
+#SoEmail-toolbar-button:hover
+{
+  -moz-image-region: rect(24px 24px 48px  0px);
+}
+[iconsize="small"] #SoEmail-toolbar-button
+{
+  -moz-image-region: rect( 0px 40px 16px 24px);
+}
+[iconsize="small"] #SoEmail-toolbar-button:hover
+{
+  -moz-image-region: rect(24px 40px 40px 24px);
+}
+/*
+treechildren::-moz-tree-row(selected)            { background-color: #FFFFAA; }
+treechildren::-moz-tree-row(odd)                 { background-color: #EEEEEE; }
+treechildren::-moz-tree-row(odd, selected)       { background-color: #FFFFAA; }*/
+treechildren::-moz-tree-cell-text(blue) { color: #0000FF; }
+treechildren::-moz-tree-cell-text(red)	{ color: #FF0000; }
+treechildren::-moz-tree-cell-text(green){ color: #00FF00; }
+

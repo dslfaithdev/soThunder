@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+
+<RDF xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:em="http://www.mozilla.org/2004/em-rdf#">
+
+    <Description about="urn:mozilla:install-manifest">
+
+        <em:id>soemail@bth.se</em:id>
+        <em:name>Social Thunder</em:name>
+        <em:version>0.1.6</em:version>
+
+        <em:targetApplication>
+            <Description>
+                <em:id>{3550f703-e582-4d05-9a08-453d09bdfdc6}</em:id>
+                <em:minVersion>3.1</em:minVersion>
+                <em:maxVersion>3.3.*</em:maxVersion>
+            </Description>
+        </em:targetApplication>
+
+        <em:creator>Fredrik Erlandsson</em:creator>
+        <em:description>Give Thunderbird a social touch, part of DSL-FAITH</em:description>
+        <em:homepageURL>http://soemail.cs.ucdavis.edu/</em:homepageURL>
+        <em:aboutURL>chrome://SoEmail/content/about.xul</em:aboutURL>
+        <em:optionsURL>chrome://SoEmail/content/options.xul</em:optionsURL>
+        <em:updateURL>https://cyrus.cs.ucdavis.edu/~fer/sothunder/update.rdf<em:updateURL>
+				<em:updateKey>
+				MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC
+				ksOvE4amyyVhRr8gXZWuQNIBbbf9OspBohDCrXJ
+				Piykm/p40oO9F+0kYuUJZrD1TqmXRN/UFQreShW
+				LTwInd++sy9IXFGSzFr9CLkGNd6VSDU7WwiMMk/
+				dUhbd9hgXCttMt0ZDdkXwEYiqKU/HtHncX4fgwj
+				pVcmvP7BZ80cb7QIDAQAB
+				</em:updateKey>
+			
+    </Description>
+</RDF>
+

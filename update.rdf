@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<RDF:RDF xmlns:NS1="http://www.mozilla.org/2004/em-rdf#"
+         xmlns:NC="http://home.netscape.com/NC-rdf#"
+         xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <RDF:Description RDF:about="rdf:#$+ImG2"
+                   NS1:id="{3550f703-e582-4d05-9a08-453d09bdfdc6}"
+                   NS1:minVersion="3.1"
+                   NS1:maxVersion="3.3*"
+                   NS1:updateLink="http://cyrus.cs.ucdavis.edu/~fer/sothunder/sothunder-0.1.5.xpi"
+                   NS1:updateHash="sha256:8e5a557449b4929491bea0e0268e67d4df29be2eb324784d3fb6685769239da6" />
+  <RDF:Seq RDF:about="rdf:#$XImG2">
+    <RDF:li RDF:resource="rdf:#$YImG2"/>
+  </RDF:Seq>
+  <RDF:Description RDF:about="rdf:#$YImG2"
+                   NS1:version="0.1.5">
+    <NS1:targetApplication RDF:resource="rdf:#$+ImG2"/>
+  </RDF:Description>
+  <RDF:Description RDF:about="urn:mozilla:extension:soemail@bth.se"
+                   NS1:signature="MIGTMA0GCSqGSIb3DQEBDQUAA4GBAKC9dUn0a1+Y5sQvC7ZwmO4Joqug8Kw/FABnVU/oaqLmB3KT3FTWc7YaTz3li1+DdY8Vxe1riQX6PYv4PnOAfRhMqSerxrsEJL5PIv/p+388U5QM61jSCq1A7zjFf4F7w0d8JL3AC04YLJvyFQ+UDqwI4fuaxh0kk0X766EYn5ho">
+    <NS1:updates RDF:resource="rdf:#$XImG2"/>
+  </RDF:Description>
+</RDF:RDF>

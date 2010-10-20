@@ -1,0 +1,54 @@
+/*
+treechildren::-moz-tree-row(selected)            { background-color: #FFFFAA; }
+treechildren::-moz-tree-row(odd)                 { background-color: #EEEEEE; }
+treechildren::-moz-tree-row(odd, selected)       { background-color: #FFFFAA; }*/
+treechildren::-moz-tree-cell-text(blue) { background-color: #0000FF; color: #FFFFFF }
+treechildren::-moz-tree-cell-text(red)	{ background-color: #FF0000; color: #FFFFFF }
+treechildren::-moz-tree-cell-text(green){ background-color: #00B600; color: #FFFFFF }
+
+
+#soPath-box
+{
+	background-color: #E6E6E6;
+	border: 1px solid #C8C8C8;
+	-moz-border-radius: 7px !important;
+	margin: 6px 6px 6px;
+	padding: 4px;  
+  min-height: 30px;
+}
+
+#soPath-box[largeView="true"]
+{
+	min-height: 60px;
+}
+
+#soPath-box[attachmentOverflow="true"] {
+overflow: auto;
+}
+
+#soPath-splitter {
+	min-height: 7px;
+	border-top: 1px solid #C8C8C8;
+	background-color: #E6E6E6;
+}
+/*
+
+#SoEmail-toolbar-button
+{
+  list-style-image: url("chrome://SoEmail/skin/toolbar-button.png");
+  -moz-image-region: rect(0px 24px 24px 0px);
+}
+#SoEmail-toolbar-button:hover
+{
+  -moz-image-region: rect(24px 24px 48px  0px);
+}
+[iconsize="small"] #SoEmail-toolbar-button
+{
+  -moz-image-region: rect( 0px 40px 16px 24px);
+}
+[iconsize="small"] #SoEmail-toolbar-button:hover
+{
+  -moz-image-region: rect(24px 40px 40px 24px);
+}
+*/
+

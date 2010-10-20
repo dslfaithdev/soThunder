@@ -1,0 +1,8 @@
+<!ENTITY SoEmail.label "Your localized menuitem">
+<!ENTITY SoEmailContext.label "Your Menuitem">
+<!ENTITY SoEmailContext.accesskey "Y">
+<!ENTITY SoEmailToolbarButton.label "Your Toolbar Button">
+<!ENTITY SoEmailToolbarButton.tooltip "This is your toolbar button!">
+<!ENTITY SoEmailSidebar.label "Your Sidebar">
+<!ENTITY SoEmailToolbar.name  "example">
+<!ENTITY SoEmailToolbar.label "This is an example toolbar. You can hide it under View &gt; toolbars &gt; &SoEmailToolbar.name;">
