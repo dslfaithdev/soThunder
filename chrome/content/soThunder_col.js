@@ -141,7 +141,7 @@ function getXdslInfo(xdsl, hdr, value){
 	}
 		
 	dump("getXdslTrust --- "+ xdsl + "\n");
-	var url = "http://cyrus.cs.ucdavis.edu/~fer/xdslTrust.php?uid=" + uid + "&xdsl=" +xdsl;
+	var url = "https://soemail.cs.ucdavis.edu/api/xdslTrust/?uid=" + uid + "&xdsl=" +xdsl;
 	
 	dump("Requesting: " + url + " " );
 	

@@ -111,7 +111,7 @@ function refreshXDSL( event ){
 			{
 				if(toArray[i] == "")
 					continue;
-				var url = "http://cyrus.cs.ucdavis.edu/~fer/verifyXdsl.php?uid=" + uid;
+				var url = "https://soemail.cs.ucdavis.edu/api/verifyXdsl/?uid=" + uid;
 				url += "&xdsl=" + xdsl + "&to=" + toArray[i];
 				
 				dump("Requesting: " + url + "\n" );
@@ -165,7 +165,7 @@ function findPaths( evt ) {
 	myLoader.hidden=false;
 	mySP.innerHTML = "";
 	
-	var url="http://cyrus.cs.ucdavis.edu/~fer/findpaths.php?uid="+uid;
+	var url="https://soemail.cs.ucdavis.edu/api/findPath/?uid="+uid;
 
 	var msgCompFields = gMsgCompose.compFields;
 	var toList = new Array();
@@ -178,7 +178,7 @@ function findPaths( evt ) {
 	
 	to = Array().concat(toList, ccList, bccList);
 	from = document.getElementById("msgIdentity").description;
-	url += "&send_from=" + cleanEmail(from) + "&send_to=" + cleanEmail(to);
+	url += "&from=" + cleanEmail(from) + "&to=" + cleanEmail(to);
 	
 	dump( url + "\n" );
 	
@@ -256,9 +256,9 @@ function send_event_handler( evt ) {
 	}
 	
 	//AJAX!
-	var url = "http://cyrus.cs.ucdavis.edu/~fer/registerXdsl.php?uid=" + uid + "&paths=" + paths;
+	var url = "https://soemail.cs.ucdavis.edu/api/registerXdsl/?uid=" + uid + "&paths=" + paths;
 	
-	dump( url + "\n" );
+	dump( url + " -> " );
 	
 	xmlhttp=new XMLHttpRequest();
 	xmlhttp.open("GET",url,false);
@@ -268,13 +268,14 @@ function send_event_handler( evt ) {
 	
 	if(xdsl > 0)
 	{
-		
-		
 		// alter headers to include X-DSL feild.
 		if( gMsgCompose.compFields.otherRandomHeaders != "" )
 			gMsgCompose.compFields.otherRandomHeaders += "\n";
 		gMsgCompose.compFields.otherRandomHeaders += "X-DSL: "+xdsl+"\n";
+		dump("X-DSL: "+xdsl+"\n");
 	}
+	else
+		dump(xdsl+"\n");
 	return;	
 }
 
