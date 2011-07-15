@@ -2,7 +2,7 @@
 treechildren::-moz-tree-row(selected)            { background-color: #FFFFAA; }
 treechildren::-moz-tree-row(odd)                 { background-color: #EEEEEE; }
 treechildren::-moz-tree-row(odd, selected)       { background-color: #FFFFAA; }*/
-treechildren::-moz-tree-cell-text(blue) { background-color: #0000FF; color: #FFFFFF }
+treechildren::-moz-tree-cell-text(yellow) { background-color: #FFE800; color: #FFFFFF }
 treechildren::-moz-tree-cell-text(red)	{ background-color: #FF0000; color: #FFFFFF }
 treechildren::-moz-tree-cell-text(green){ background-color: #00B600; color: #FFFFFF }
 

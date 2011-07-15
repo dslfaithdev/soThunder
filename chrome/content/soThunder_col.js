@@ -1,3 +1,11 @@
+/*
+http://www.wilsonmar.com/1colors.htm
+http://snipplr.com/view/14590/hsv-to-rgb/
+http://www.csgnetwork.com/csgcolorsel4.html
+http://colorschemedesigner.com/
+http://johndyer.name/lab/colorpicker/
+*/
+
 const XDSL = 0;
 const TRUST = 1;
 const HOPS = 2;
@@ -39,11 +47,11 @@ getCellProperties:   function(row, col, props){
 		return;
 	
 	var atomService = Components.classes["@mozilla.org/atom-service;1"].getService(Components.interfaces.nsIAtomService);
-  props.AppendElement(atomService.getAtom("blue"));
+  props.AppendElement(atomService.getAtom("yellow"));
 	if(trust >= 0.5) 
 		props.AppendElement(atomService.getAtom("green"));	
 	if(trust > 0.2)
-		props.AppendElement(atomService.getAtom("blue"));
+			props.AppendElement(atomService.getAtom("yellow"));
 	else
 		props.AppendElement(atomService.getAtom("red"));
 	return;
@@ -86,11 +94,11 @@ getCellProperties:   function(row, col, props){
 		return;
 	
 	var atomService = Components.classes["@mozilla.org/atom-service;1"].getService(Components.interfaces.nsIAtomService);
-  props.AppendElement(atomService.getAtom("blue"));
+  props.AppendElement(atomService.getAtom("yellow"));
 	if(trust >= 0.5) 
 		props.AppendElement(atomService.getAtom("green"));	
 	if(trust > 0.2)
-		props.AppendElement(atomService.getAtom("blue"));
+		props.AppendElement(atomService.getAtom("yellow"));
 	else
 		props.AppendElement(atomService.getAtom("red"));
 	return;
