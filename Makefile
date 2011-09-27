@@ -1,6 +1,6 @@
 VERSION:=$(shell cat install.rdf | sed '/em:version/!d' | sed -e :a -e 's/<[^>]*>//g;/</N;//ba' | sed 's/ //g')
 
-UPLOADPATH:=fer@cyrus.cs.ucdavis.edu:public_html/sothunder
+UPLOADPATH:=fer@garm.comlab.bth.se:/usr/local/www/vhosts/soemail.garm.comlab.bth.se/htdocs/sothunder
 
 DEPS:= chrome/ \
  chrome.manifest \
@@ -34,4 +34,4 @@ clean:
 	rm sothunder.xpi
 
 upload: sothunder.xpi
-	scp sothunder*.xpi $(UPLOADPATH)
+	scp sothunder*.xpi update.rdf $(UPLOADPATH)

@@ -7,7 +7,7 @@
 
         <em:id>soemail@bth.se</em:id>
         <em:name>Social Thunder</em:name>
-        <em:version>0.2.1</em:version>
+        <em:version>0.2.2</em:version>
 
         <em:targetApplication>
             <Description>
@@ -22,16 +22,7 @@
         <em:homepageURL>http://soemail.cs.ucdavis.edu/</em:homepageURL>
         <em:aboutURL>chrome://SoEmail/content/about.xul</em:aboutURL>
         <em:optionsURL>chrome://SoEmail/content/options.xul</em:optionsURL>
-        <em:updateURL>https://cyrus.cs.ucdavis.edu/~fer/sothunder/update.rdf<em:updateURL>
-				<em:updateKey>
-				MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC
-				ksOvE4amyyVhRr8gXZWuQNIBbbf9OspBohDCrXJ
-				Piykm/p40oO9F+0kYuUJZrD1TqmXRN/UFQreShW
-				LTwInd++sy9IXFGSzFr9CLkGNd6VSDU7WwiMMk/
-				dUhbd9hgXCttMt0ZDdkXwEYiqKU/HtHncX4fgwj
-				pVcmvP7BZ80cb7QIDAQAB
-				</em:updateKey>
-			
+        <em:updateURL>https://soemail.garm.comlab.bth.se/sothunder/update.rdf</em:updateURL>
     </Description>
 </RDF>
 
