@@ -154,9 +154,9 @@ function getXdslInfo(xdsl, hdr, value){
 	dump("Requesting: " + url + " " );
 	
 	xmlhttp=new XMLHttpRequest();
-	xmlhttp.open("GET",url,false);
-	xmlhttp.send(null);
-	
+	xmlhttp.onreadystatechange = function (aEvt) {
+		if (request.readyState == 4) 
+			if(request.status == 200)  {
 	dump(xmlhttp.responseText + "\n");
 	
 	if(xmlhttp.status == 200){
@@ -166,6 +166,10 @@ function getXdslInfo(xdsl, hdr, value){
 	}
 	else
 		return -1;
+	}
+	};
+	xmlhttp.open("GET",url,false);
+	xmlhttp.send(null);
 }
 
 function doOnceLoaded(){

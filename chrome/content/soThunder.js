@@ -118,7 +118,7 @@ function refreshXDSL( event ){
 				
 				xmlhttp=new XMLHttpRequest();
 				xmlhttp.open("GET",url,false);
-				xmlhttp.send(null);
+				xmlhttp.onreadystatechange = function (aEvt) {
 				
 				dump(xmlhttp.status + " " + injectHtml(xmlhttp.responseText) + "\n");
 				
@@ -137,6 +137,8 @@ function refreshXDSL( event ){
 							//hdr.setStringProperty("x-dsl",hdr.getStringProperty("x-dsl") + "," + 
 						}
 					}
+				};
+				xmlhttp.send(null);
 			}
 		}
 		else
@@ -185,7 +187,7 @@ function findPaths( evt ) {
 	
 	xmlhttp=new XMLHttpRequest();
 	xmlhttp.open("GET",url,false);
-	xmlhttp.send(null);
+	xmlhttp.onreadystatechange = function (aEvt) {
 	
 	var txt;
 	if(xmlhttp.responseText == "")
@@ -203,7 +205,8 @@ function findPaths( evt ) {
 	 */
 	mySP.innerHTML = txt;
 	myLoader.hidden=true;
-	document.getElementById("soPath-split").setAttribute( "state","open");
+	};
+	xmlhttp.send(null);
 }
 
 function injectHtml(str){
@@ -263,7 +266,7 @@ function send_event_handler( evt ) {
 	
 	xmlhttp=new XMLHttpRequest();
 	xmlhttp.open("GET",url,false);
-	xmlhttp.send(null);
+	xmlhttp.onreadystatechange = function (aEvt) {
 	
 	xdsl = xmlhttp.responseText;
 	
@@ -277,6 +280,8 @@ function send_event_handler( evt ) {
 	}
 	else
 		dump(xdsl+"\n");
+	};
+	xmlhttp.send(null);
 	return;	
 }
 
