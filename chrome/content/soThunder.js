@@ -113,30 +113,32 @@ function refreshXDSL( event ){
 					continue;
 				var url = "https://soemail.garm.comlab.bth.se/api/verifyXdsl/?uid=" + uid;
 				url += "&xdsl=" + xdsl + "&to=" + toArray[i];
-				
+
 				dump("Requesting: " + url + "\n" );
-				
+
 				xmlhttp=new XMLHttpRequest();
-				xmlhttp.open("GET",url,false);
+				xmlhttp.open("GET",url,true);
 				xmlhttp.onreadystatechange = function (aEvt) {
-				
-				dump(xmlhttp.status + " " + injectHtml(xmlhttp.responseText) + "\n");
-				
-				if(xmlhttp.status == 200)
-					if(xmlhttp.responseText != "Can't verify X-DSL.")
-					{
-						document.getElementById("xdslSocialPathDiv").innerHTML += injectHtml(xmlhttp.responseText);	
-						var xdslLength = hdr.getStringProperty("x-dsl").toString().split(",").length;
-						if(xdslLength == 1)//We have not updated our xdsl yet..
-						{	
-							hdr.setStringProperty("x-dsl", document.getElementById("xdslTrust").innerHTML);
+
+					if (xmlhttp.readyState == 4) {
+							dump(xmlhttp.status + " " + injectHtml(xmlhttp.responseText) + "\n");
+
+							if(xmlhttp.status == 200)
+								if(xmlhttp.responseText != "Can't verify X-DSL.")
+								{
+									document.getElementById("xdslSocialPathDiv").innerHTML += injectHtml(xmlhttp.responseText);	
+									var xdslLength = hdr.getStringProperty("x-dsl").toString().split(",").length;
+									if(xdslLength == 1)//We have not updated our xdsl yet..
+									{	
+										hdr.setStringProperty("x-dsl", document.getElementById("xdslTrust").innerHTML);
+									}
+									else// if(xdslLength == 3)//We only have 'orig' values, but do we care??
+									{
+										hdr.setStringProperty("x-dsl", document.getElementById("xdslTrust").innerHTML);
+										//hdr.setStringProperty("x-dsl",hdr.getStringProperty("x-dsl") + "," + 
+									}
+								}
 						}
-						else// if(xdslLength == 3)//We only have 'orig' values, but do we care??
-						{
-							hdr.setStringProperty("x-dsl", document.getElementById("xdslTrust").innerHTML);
-							//hdr.setStringProperty("x-dsl",hdr.getStringProperty("x-dsl") + "," + 
-						}
-					}
 				};
 				xmlhttp.send(null);
 			}
@@ -186,25 +188,28 @@ function findPaths( evt ) {
 	dump( url + "\n" );
 	
 	xmlhttp=new XMLHttpRequest();
-	xmlhttp.open("GET",url,false);
+	xmlhttp.open("GET",url,true)
 	xmlhttp.onreadystatechange = function (aEvt) {
-	
-	var txt;
-	if(xmlhttp.responseText == "")
-			txt = "No social path found.<html:br/>"
-	else
-	txt = injectHtml(xmlhttp.responseText);
-	
-	dump("Formatted response: "+txt +"\n");
-	
-	/* Not used *jet*
-	 var body = document.createElementNS("http://www.w3.org/1999/xhtml", "body");
-	 var injectHTML = Components.classes["@mozilla.org/feed-unescapehtml;1"] 
-	 .getService(Components.interfaces.nsIScriptableUnescapeHTML) 
-	 .parseFragment(txt, false, null, body); 
-	 */
-	mySP.innerHTML = txt;
-	myLoader.hidden=true;
+		if (xmlhttp.readyState == 4)
+			if (xmlhttp.status == 200) {
+
+				var txt;
+				if(xmlhttp.responseText == "")
+					txt = "No social path found.<html:br/>"
+				else
+					txt = injectHtml(xmlhttp.responseText);
+
+				dump("Formatted response: "+txt +"\n");
+
+				/* Not used *jet*
+					 var body = document.createElementNS("http://www.w3.org/1999/xhtml", "body");
+					 var injectHTML = Components.classes["@mozilla.org/feed-unescapehtml;1"] 
+					 .getService(Components.interfaces.nsIScriptableUnescapeHTML) 
+					 .parseFragment(txt, false, null, body); 
+				 */
+				mySP.innerHTML = txt;
+				myLoader.hidden=true;
+			}
 	};
 	xmlhttp.send(null);
 }
@@ -265,21 +270,24 @@ function send_event_handler( evt ) {
 	dump( url + " -> " );
 	
 	xmlhttp=new XMLHttpRequest();
-	xmlhttp.open("GET",url,false);
+	xmlhttp.open("GET",url,true);
 	xmlhttp.onreadystatechange = function (aEvt) {
-	
-	xdsl = xmlhttp.responseText;
-	
-	if(xdsl > 0)
-	{
-		// alter headers to include X-DSL feild.
-		if( gMsgCompose.compFields.otherRandomHeaders != "" )
-			gMsgCompose.compFields.otherRandomHeaders += "\n";
-		gMsgCompose.compFields.otherRandomHeaders += "X-DSL: "+xdsl+"\n";
-		dump("X-DSL: "+xdsl+"\n");
-	}
-	else
-		dump(xdsl+"\n");
+		if (xmlhttp.readyState == 4)
+			if (xmlhttp.status == 200) {
+
+				xdsl = xmlhttp.responseText;
+
+				if(xdsl > 0)
+				{
+					// alter headers to include X-DSL feild.
+					if( gMsgCompose.compFields.otherRandomHeaders != "" )
+						gMsgCompose.compFields.otherRandomHeaders += "\n";
+					gMsgCompose.compFields.otherRandomHeaders += "X-DSL: "+xdsl+"\n";
+					dump("X-DSL: "+xdsl+"\n");
+				}
+				else
+					dump(xdsl+"\n");
+			}
 	};
 	xmlhttp.send(null);
 	return;	

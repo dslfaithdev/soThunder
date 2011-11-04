@@ -141,35 +141,33 @@ observe: function(aMsgFolder, aTopic, aData)
 }
 
 function getXdslInfo(xdsl, hdr, value){
-	if( xdsl == "" || xdsl == -1 )
-		return xdsl;
-	//&& isNaN(xdsl) 
-	if( xdsl.indexOf(",") != -1 ){
-		return xdsl.split(",")[value];
-	}
-		
-	dump("getXdslTrust --- "+ xdsl + "\n");
-	var url = "https://soemail.cs.ucdavis.edu/api/xdslTrust/?uid=" + uid + "&xdsl=" +xdsl;
-	
-	dump("Requesting: " + url + " " );
-	
-	xmlhttp=new XMLHttpRequest();
-	xmlhttp.onreadystatechange = function (aEvt) {
-		if (request.readyState == 4) 
-			if(request.status == 200)  {
-	dump(xmlhttp.responseText + "\n");
-	
-	if(xmlhttp.status == 200){
-		xdsl = xdsl + "," + xmlhttp.responseText;
-		hdr.setStringProperty("x-dsl", xdsl);
-		return xdsl.split(",")[value];
-	}
-	else
-		return -1;
-	}
-	};
-	xmlhttp.open("GET",url,false);
-	xmlhttp.send(null);
+    if( xdsl == "" || xdsl == -1 )
+        return xdsl;
+    //&& isNaN(xdsl) 
+    if( xdsl.indexOf(",") != -1 ){
+        return xdsl.split(",")[value];
+    }
+
+    dump("getXdslTrust --- "+ xdsl + "\n");
+    var url = "https://soemail.garm.comlab.bth.se/api/xdslTrust/?uid=" + uid + "&xdsl=" +xdsl;
+
+    dump("Requesting: " + url + " " );
+
+    xmlhttp=new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function (aEvt) {
+        if (xmlhttp.readyState == 4) 
+            if(xmlhttp.status == 200)  {
+                dump(xmlhttp.responseText + "\n");
+
+                xdsl = xdsl + "," + xmlhttp.responseText;
+                hdr.setStringProperty("x-dsl", xdsl);
+                return xdsl.split(",")[value];
+            }
+            else
+                return -1;
+    };
+    xmlhttp.open("GET",url,true);
+    xmlhttp.send(null);
 }
 
 function doOnceLoaded(){
