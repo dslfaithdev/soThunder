@@ -126,7 +126,11 @@ function refreshXDSL( event ){
 							if(xmlhttp.status == 200)
 								if(xmlhttp.responseText != "Can't verify X-DSL.")
 								{
-									document.getElementById("xdslSocialPathDiv").innerHTML += injectHtml(xmlhttp.responseText);	
+									document.getElementById("xdslSocialPathDiv").innerHTML = injectHtml(xmlhttp.responseText);	
+									//Hide find social path loader and show the SP.
+									document.getElementById("xdsl-loader").hidden = true;
+									document.getElementById("xdslSocialPath").hidden = false;
+			
 									var xdslLength = hdr.getStringProperty("x-dsl").toString().split(",").length;
 									if(xdslLength == 1)//We have not updated our xdsl yet..
 									{	
@@ -145,14 +149,11 @@ function refreshXDSL( event ){
 		}
 		else
 		{
+			document.getElementById("xdslSocialPathDiv").innerHTML = "NO X-DSL";
+			document.getElementById("xdsl-loader").hidden = true;
+			document.getElementById("xdslSocialPath").hidden = false;
 			dump("--NO x-dsl--\n");
 		}
-		if(document.getElementById("xdslSocialPathDiv").innerHTML == "")
-			document.getElementById("xdslSocialPathDiv").innerHTML = "Can't verify X-DSL.";
-		document.getElementById("xdsl-loader").hidden = true;
-		document.getElementById("xdslSocialPath").hidden = false;
-		//Hide find social path loader and show the SP.
-		
 	} catch (err) {
 		//Components.utils.reportError("showLinkedTask " + err);
 		dump("showLinkedTask " + err);
@@ -270,7 +271,7 @@ function send_event_handler( evt ) {
 	dump( url + " -> " );
 	
 	xmlhttp=new XMLHttpRequest();
-	xmlhttp.open("GET",url,true);
+	xmlhttp.open("GET",url,false);
 	xmlhttp.onreadystatechange = function (aEvt) {
 		if (xmlhttp.readyState == 4)
 			if (xmlhttp.status == 200) {
