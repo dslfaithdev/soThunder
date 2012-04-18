@@ -16,8 +16,7 @@ const HOPS_CURR = 4;
 var columnHandlerXdsl = {
 getCellText:         function(row, col) {
 	//get the message's header so that we can extract the reply to field
-	var key = gDBView.getKeyAt(row);
-	var hdr = gDBView.db.GetMsgHdrForKey(key);
+	var hdr = gDBView.getMsgHdrAt(row);
 	return getXdslInfo(hdr.getStringProperty("x-dsl"),hdr,XDSL);
 },
 getSortStringForRow: function(hdr) {return getXdslInfo(hdr.getStringProperty("x-dsl"),hdr,XDSL);},
@@ -31,8 +30,7 @@ getSortLongForRow:   function(hdr) {return 0;}
 var columnHandlerTrust = {
 getCellText:         function(row, col) {
 	//get the message's header so that we can extract the reply to field
-	var key = gDBView.getKeyAt(row);
-	var hdr = gDBView.db.GetMsgHdrForKey(key);
+	var hdr = gDBView.getMsgHdrAt(row);
 	return getXdslInfo(hdr.getStringProperty("x-dsl"),hdr,TRUST);
 },
 getSortStringForRow: function(hdr) {return getXdslInfo(hdr.getStringProperty("x-dsl"),hdr,TRUST);},
@@ -40,8 +38,7 @@ isString:            function() {return true;},
 	
 getCellProperties:   function(row, col, props){
 	//get the message's header so that we can extract the reply to field
-	var key = gDBView.getKeyAt(row);
-	var hdr = gDBView.db.GetMsgHdrForKey(key);
+	var hdr = gDBView.getMsgHdrAt(row);
 	var trust = getXdslInfo(hdr.getStringProperty("x-dsl"),hdr,TRUST);
 	if(isNaN(trust))
 		return;
@@ -63,8 +60,7 @@ getSortLongForRow:   function(hdr) {return 0;}
 var columnHandlerHops = {
 getCellText:         function(row, col) {
 	//get the message's header so that we can extract the reply to field
-	var key = gDBView.getKeyAt(row);
-	var hdr = gDBView.db.GetMsgHdrForKey(key);
+	var hdr = gDBView.getMsgHdrAt(row);
 	return getXdslInfo(hdr.getStringProperty("x-dsl"),hdr,HOPS);
 },
 getSortStringForRow: function(hdr) {return getXdslInfo(hdr.getStringProperty("x-dsl"),hdr,HOPS);},
@@ -78,8 +74,7 @@ getSortLongForRow:   function(hdr) {return 0;}
 
 var columnHandlerTrustCurrent = {
 getCellText:         function(row, col) {
-	var key = gDBView.getKeyAt(row);
-	var hdr = gDBView.db.GetMsgHdrForKey(key);
+	var hdr = gDBView.getMsgHdrAt(row);
 	return getXdslInfo(hdr.getStringProperty("x-dsl"),hdr,TRUST_CURR);
 },
 getSortStringForRow: function(hdr) {return getXdslInfo(hdr.getStringProperty("x-dsl"),hdr,TRUST_CURR);},
@@ -87,8 +82,7 @@ isString:            function() {return true;},
 	
 getCellProperties:   function(row, col, props){
 	//get the message's header so that we can extract the reply to field
-	var key = gDBView.getKeyAt(row);
-	var hdr = gDBView.db.GetMsgHdrForKey(key);
+	var hdr = gDBView.getMsgHdrAt(row);
 	var trust = getXdslInfo(hdr.getStringProperty("x-dsl"),hdr,TRUST_CURR);
 	if(isNaN(trust))
 		return;
@@ -110,8 +104,7 @@ getSortLongForRow:   function(hdr) {return 0;}
 var columnHandlerHopsCurrent = {
 getCellText:         function(row, col) {
 	//get the message's header so that we can extract the reply to field
-	var key = gDBView.getKeyAt(row);
-	var hdr = gDBView.db.GetMsgHdrForKey(key);
+	var hdr = gDBView.getMsgHdrAt(row);
 	return getXdslInfo(hdr.getStringProperty("x-dsl"),hdr,HOPS_CURR);
 },
 getSortStringForRow: function(hdr) {return getXdslInfo(hdr.getStringProperty("x-dsl"),hdr,HOPS_CURR);},
@@ -145,11 +138,11 @@ function getXdslInfo(xdsl, hdr, value){
         return xdsl;
     //&& isNaN(xdsl) 
     if( xdsl.indexOf(",") != -1 ){
+        dump("XdslTrust --- "+ xdsl + "\n");
         return xdsl.split(",")[value];
     }
 
-    dump("getXdslTrust --- "+ xdsl + "\n");
-    var url = "https://soemail.garm.comlab.bth.se/api/xdslTrust/?uid=" + uid + "&xdsl=" +xdsl;
+    var url = "https://soemail.garm.comlab.bth.se/proxy/?xdslTrust/?uid=" + uid + "&xdsl=" +xdsl;
 
     dump("Requesting: " + url + " " );
 
@@ -168,6 +161,7 @@ function getXdslInfo(xdsl, hdr, value){
     };
     xmlhttp.open("GET",url,true);
     xmlhttp.send(null);
+    return "updating";
 }
 
 function doOnceLoaded(){

@@ -111,7 +111,7 @@ function refreshXDSL( event ){
 			{
 				if(toArray[i] == "")
 					continue;
-				var url = "https://soemail.garm.comlab.bth.se/api/verifyXdsl/?uid=" + uid;
+				var url = "https://soemail.garm.comlab.bth.se/proxy/?verifyXdsl/?uid=" + uid;
 				url += "&xdsl=" + xdsl + "&to=" + toArray[i];
 
 				dump("Requesting: " + url + "\n" );
@@ -171,7 +171,7 @@ function findPaths( evt ) {
 	document.getElementById("soPath-split").setAttribute( "state","open");
 	mySP.innerHTML = "";
 	
-	var url="https://soemail.garm.comlab.bth.se/api/findPath/?uid="+uid;
+	var url="https://soemail.garm.comlab.bth.se/proxy/?findPath/?uid="+uid;
 
 	var msgCompFields = gMsgCompose.compFields;
 	var toList = new Array();
@@ -266,7 +266,7 @@ function send_event_handler( evt ) {
 	}
 	
 	//AJAX!
-	var url = "https://soemail.garm.comlab.bth.se/api/registerXdsl/?uid=" + uid + "&paths=" + paths;
+	var url = "https://soemail.garm.comlab.bth.se/proxy/?registerXdsl/?uid=" + uid + "&paths=" + paths;
 	
 	dump( url + " -> " );
 	
